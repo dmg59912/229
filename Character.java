@@ -21,6 +21,7 @@ class Character{
 	public int key(){
 		// for now, returns the ascii value of first character of last name
 		int k = lastName.charAt(0);
+		k = k % 9;
 		return k;
 	}
 
@@ -44,11 +45,37 @@ class Character{
 
 
 		//use this to test part 2!!! If it works, comment or delete
-		Character s1 = new Character("Anakin", "Skywalker");
-		System.out.println(s1);
+		Character s1 = new Character("r2", "Fett");
+		//System.out.println(s1);
 
 
 		//insert other code here!!!
+		Scanner in = new Scanner(System.in);
+		String first_name;
+		String last_name;
+		int total_key_inserted = 0;
+		while( total_key_inserted <= TABLESIZE )
+		{
+			System.out.print("Last Name: ");
+			last_name = in.nextLine();
+			System.out.print("\nFirst Name: ");
+			first_name = in.nextLine();
+			System.out.println("\n-----------------");
+			Character names = new Character(first_name,last_name);
+			if (hashtable[names.key()] == null)
+			{
+				
+				hashtable[names.key()] = names;
+				++total_key_inserted;
+			}
+			else
+				System.out.println("Error: Key already taken\n---------------------------");
+				
+			
+		}
+		System.out.println("Finish Hash Table");
+		System.out.println("Last Name: ");
+		last_name = in.nextLine();
 		
 		
 	}
