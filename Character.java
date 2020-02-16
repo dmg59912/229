@@ -54,14 +54,17 @@ class Character{
 		String first_name;
 		String last_name;
 		int total_key_inserted = 0;
-		while( total_key_inserted <= TABLESIZE )
+		Character names;
+		
+		
+		while( total_key_inserted < TABLESIZE )
 		{
 			System.out.print("Last Name: ");
 			last_name = in.nextLine();
 			System.out.print("\nFirst Name: ");
 			first_name = in.nextLine();
 			System.out.println("\n-----------------");
-			Character names = new Character(first_name,last_name);
+			names = new Character(first_name,last_name);
 			if (hashtable[names.key()] == null)
 			{
 				
@@ -77,8 +80,32 @@ class Character{
 		System.out.println("Last Name: ");
 		last_name = in.nextLine();
 		
+		long time1, time2;
+		time1=System.nanoTime();
+
+	
+		for( int i = 0; i < hashtable.length; ++i)
+		{
+			if(hashtable[i].lastName.equals(last_name))
+				System.out.println(hashtable[i].toString());
+					
+		}
 		
+		time2=System.nanoTime();
+		System.out.println("Time for the operation is: " + (time2-time1));
+		System.out.println();
+		time1=System.nanoTime();
+		
+		int k = last_name.charAt(0);
+		k = k % 9;
+		
+		System.out.println(hashtable[k].toString() );
+		
+		time2=System.nanoTime();
+		System.out.println("Time for the operation is: " + (time2-time1));
+
 	}
+	
 
 
 }
